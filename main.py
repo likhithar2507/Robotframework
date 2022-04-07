@@ -1,16 +1,54 @@
-# This is a sample Python script.
+#* Settings *
+Library  SeleniumLibrary
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+Suite Setup     log     Inside test suite Setup
+Suite Teardown      log     Inside test suite Teardown
+Test Setup      log  Inside test Setup
+Test Teardown   log  Inside test teardown
+* Variables *
+${google_search}    https://www.google.com/
+${search_query}     flipkart
+${search_product}   Iphone
+${email}    joysangelm@gmail.com
+* Test Cases *
+google search test
+    [Documentation]  Test to open google
+    [Tags]  google
+    open Browser    ${google_search}    chrome
+    Maximize Browser Window
+    Search data
+    Submit form
+    click Element   class:LC20lb
+
+flipkart search test
+    [Documentation]  Test for flipkart
+    [Tags]  Shopping app
+    sleep  2s
+    click Button   class:_2KpZ6l
+    sleep  2s
+    Search flip data
+    click Button    class:L0Z3Pu
+
+buying flipkart test
+    sleep  3s
+    click Element  xpath=//html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div/a/div[2]/div[1]/div[1]
+    sleep  1s
+    Switch Window  title:APPLE iPhone 13 ( 128 GB GB Storage, 0 GB RAM ) Online at Best Price On Flipkart.com
+    sleep  2s
+    click Element  xpath=//html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div/ul/li[2]/form/button
+    sleep  2s
+    email address
+    sleep  2s
+    click Button  class:_2KpZ6l
+    sleep  3s
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+* Keywords *
+Search data
+    Input Text  name:q  ${search_query}
+Search flip data
+    Input Text  name:q  ${search_product}
+email address
+    Input Text  class:_17N0em   ${email}
